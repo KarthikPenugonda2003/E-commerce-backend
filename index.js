@@ -13,7 +13,9 @@ const bcrypt = require('bcrypt');
 const qrcode = require('qrcode');
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin :["http://localhost:4000/", "https://shopify.onrender.com"],
+}));
 
 // Database Connection with MongoDB
 mongoose.connect('mongodb+srv://psrk1281:psrk1281@cluster0.fdr55ll.mongodb.net/E-commerce');
