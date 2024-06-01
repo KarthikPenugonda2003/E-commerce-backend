@@ -13,7 +13,9 @@ const bcrypt = require('bcrypt');
 
 app.use(express.json());
 app.use(cors({
-    origin :["http://localhost:4000", "https://shopify-p3ou.onrender.com"],
+    origin: 'https://shopify-p3ou.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
 }));
 
 // Database Connection with MongoDB
