@@ -10,7 +10,6 @@ const path = require('path');
 const cors = require('cors');
 const { log } = require('console');
 const bcrypt = require('bcrypt');
-const qrcode = require('qrcode');
 
 app.use(express.json());
 app.use(cors({
@@ -231,22 +230,6 @@ app.post('/addtocart',async(req,res)=>{
     console.log(req.body);                              //ERROR : Not showing the itemId in console after adding a product to cart
 })
 
-app.post('/generateQRCode', (req, res) => {
-    const totalCartAmount = req.body.totalCartAmount;
-    const paymentPhoneNumber = req.body.paymentPhoneNumber;
-
-    const paymentDetails = `Total Amount: ${totalCartAmount}, Phone Number: ${paymentPhoneNumber}`;
-
-    qrcode.toDataURL(paymentDetails, (err, url) => {
-        if (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Failed to generate QR code' });
-            return;
-        }
-
-        res.json({ qrCodeUrl: url });
-    });
-});
 
 app.listen(port,(error)=>{
     if(!error){
